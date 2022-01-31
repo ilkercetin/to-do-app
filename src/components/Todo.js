@@ -1,6 +1,6 @@
 import React from "react";
 
-function Todo({ key, text, setTodos, todos, todo }) {
+function Todo({ text, setTodos, todos, todo }) {
   const deleteHandler = () => {
     const updatedTodoList = todos.filter((element) => element.id !== todo.id);
 
@@ -24,7 +24,9 @@ function Todo({ key, text, setTodos, todos, todo }) {
 
   return (
     <div className="todo">
-      <li className={`todo-item ${todo.completed ? "completed" : ''}`}>{text}</li>
+      <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
+        {text}
+      </li>
       <button className="complete-btn" onClick={completeHandler}>
         <i className={`fas ${todo.completed ? "fa-undo-alt" : "fa-check"}`}></i>
       </button>

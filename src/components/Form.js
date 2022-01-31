@@ -8,16 +8,18 @@ function Form({ inputText, setInputText, todos, setTodos, status, setStatus }) {
   const submitTodoHandler = (e) => {
     e.preventDefault();
 
-    setTodos([
-      ...todos,
-      {
-        text: inputText,
-        id: Math.round(Math.random() * 10000),
-        completed: false,
-      },
-    ]);
+    if (inputText) {
+      setTodos([
+        ...todos,
+        {
+          text: inputText,
+          id: Math.round(Math.random() * 10000),
+          completed: false,
+        },
+      ]);
 
-    setInputText("");
+      setInputText("");
+    }
   };
 
   const filterChangeHandler = (e) => {
@@ -37,7 +39,11 @@ function Form({ inputText, setInputText, todos, setTodos, status, setStatus }) {
           <i className="fas fa-plus-square"></i>
         </button>
         <div className="select">
-          <select name="todos" className="filter-todo" onChange={filterChangeHandler}>
+          <select
+            name="todos"
+            className="filter-todo"
+            onChange={filterChangeHandler}
+          >
             <option value="all">All</option>
             <option value="completed">Completed</option>
             <option value="uncompleted">Uncompleted</option>
