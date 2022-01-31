@@ -1,7 +1,7 @@
 import "./App.css";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function App() {
   const [inputText, setInputText] = useState("");
@@ -9,11 +9,7 @@ function App() {
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
 
-  useEffect(() => {
-    filterHandler();
-  }, [todos, status, filterHandler]);
-
-  const filterHandler = () => {
+  const filterHandler = useCallback(() => {
     switch (status) {
       case "completed":
         setFilteredTodos(todos.filter((todo) => todo.completed === true));
@@ -25,7 +21,11 @@ function App() {
         setFilteredTodos(todos);
         break;
     }
-  };
+  }, [todos, status]);
+
+  useEffect(() => {
+    filterHandler();
+  }, [filterHandler]);
 
   return (
     <div className="App">
