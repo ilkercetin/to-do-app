@@ -8,7 +8,7 @@ function Form({ inputText, setInputText, todos, setTodos, status, setStatus }) {
   const submitTodoHandler = (e) => {
     e.preventDefault();
 
-    if (inputText) {
+    if (inputText.trim()) {
       setTodos([
         ...todos,
         {
