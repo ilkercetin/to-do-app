@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     filterHandler();
-  }, [todos, status]);
+  }, [todos, status, filterHandler]);
 
   const filterHandler = () => {
     switch (status) {
